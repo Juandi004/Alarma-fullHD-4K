@@ -1,0 +1,81 @@
+<body>
+<div>
+    <form [formGroup]="fridgeForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label [nzRequired]="true">Model</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="model" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzRequired]="true">Capacity</nz-form-label>
+        <nz-form-control>
+          <nz-input-number formControlName="capacity" nzPlaceHolder="Set your capacity"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzRequired]="true">Year</nz-form-label>
+        <nz-form-control>
+          <nz-input-number formControlName="year"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzRequired]="true">Price</nz-form-label>
+        <nz-form-control>
+          <nz-input-number formControlName="price"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <p> </p>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" type="submit">Submit</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  
+    <nz-table [nzData]="items">
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Capacity</th>
+          <th>Discontinued</th>
+          <th>Year</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.model }}</td>
+          <td>{{ item.capacity }}</td>
+          <td>{{ item.isDiscontinued }}</td>
+          <td>{{ item.year }}</td>
+          <td>{{ item.price }}</td>
+          <td>
+            <button nz-button nzType="primary" type="button" (click)="updateFridge()">Patch</button>
+            <button nz-button nzType="primary" (click)="deleteFridge(item.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  <nz-table *ngIf="selectedFridge" [nzData]="[selectedFridge]" nzBordered>
+    <thead>
+      <tr>
+        <th nzWidth="20%">Model</th>
+        <th nzWidth="20%">Capacity</th>
+        <th nzWidth="20%">On production</th>
+        <th nzWidth="20%">Year</th>
+        <th nzWidth="20%">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ selectedFridge.model }}</td>
+        <td>{{ selectedFridge.capacity }}</td>
+        <td>{{ selectedFridge.year }}</td>
+        <td>{{ selectedFridge.price }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</body>

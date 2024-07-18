@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// previous model, previously set and working for this.
+
+//model register {
+//  id         Int      @id @default(autoincrement())
+//  sensor_id  Int      
+//  name      String     
+//  createdAt DateTime @default(now())
+//}
+
+model sensor {
+  id                    Int     @id @unique @default(autoincrement())
+  model                 String
+  make                  String
+  type                  String
+  year_of_production    Int
+  register register[]
+}
+model room {
+  id                    Int     @id @unique @default(autoincrement())
+  name                  String  @unique
+  size                  String
+  registers register[]
+}
+
+model register {
+  id                     Int      @id @unique @default(autoincrement())
+  sensor_id              Int 
+  room_id                Int
+  location               String
+  createdAt              DateTime @default(now())
+
+  sensor sensor @relation(fields: [sensor_id], references: [id])
+  room room @relation(fields: [room_id], references: [id])
+}
+

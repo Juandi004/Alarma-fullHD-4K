@@ -1,0 +1,20 @@
+
+<nz-table *ngIf="!isLoading" [nzData]="registers" nzBordered nzSize="middle">
+    <thead>
+      <tr>
+        <th nzWidth="20%">ID</th>
+        <th nzWidth="30%">Sensor ID</th>
+        <th nzWidth="30%">Room ID</th>
+        <th nzWidth="20%">Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let register of registers">
+        <td>{{ register.id }}</td>
+        <td>{{ register.sensor_id }}</td>
+        <td>{{ register.room_id }}</td>
+        <td>{{ register.location }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+  
