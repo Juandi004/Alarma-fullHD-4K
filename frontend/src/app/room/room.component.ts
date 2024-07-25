@@ -42,7 +42,7 @@ export class RoomComponent implements OnInit {
     private message: NzMessageService
   ) {
     this.roomForm = this.fb.group({
-      id: [null], // This should be set to null or omitted for new rooms
+      id: [null], 
       name: ['', Validators.required],
       size: ['', Validators.required]
     });

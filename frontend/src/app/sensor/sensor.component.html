@@ -2,9 +2,43 @@
     <nz-spin nzSize="large"></nz-spin>
   </div>
   
-  <h2>Sensor List</h2>
-  
+  <h2>Create sensor</h2>
+
   <nz-card *ngIf="!isLoading">
+    <form [formGroup]="sensorForm" (ngSubmit)="onSubmit()">
+      <nz-form-item>
+        <nz-form-label [nzRequired]="true">Model</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="model" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzRequired]="true">Make</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="make" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzRequired]="true">Type</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="type" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzRequired]="true">Year of Production</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="year_of_production" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" type="submit">Submit</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  
+    <h2>Sensor List</h2>
+    
     <nz-table [nzData]="sensors" [nzBordered]="true">
       <thead>
         <tr>
@@ -13,6 +47,7 @@
           <th>Make</th>
           <th>Type</th>
           <th>Year of Production</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -22,6 +57,10 @@
           <td>{{ sensor.make }}</td>
           <td>{{ sensor.type }}</td>
           <td>{{ sensor.year_of_production }}</td>
+          <td>
+            <button nz-button nzType="default" (click)="onEdit(sensor)">Edit</button>
+            <button nz-button nzType="default" (click)="onDelete(sensor.id)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </nz-table>

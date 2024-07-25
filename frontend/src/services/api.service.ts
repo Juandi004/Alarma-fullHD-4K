@@ -12,30 +12,9 @@ import {Observable} from "rxjs";
 
   constructor(private http: HttpClient) { }
 
-//  CRUD endpoints for registers API, do not use either POST or PATCH as it is not intended to be used via frontend
-//  except by Arduino devices. DELETE is implemented in the service but not used in the frontend. Use it with caution.
-
   getAllRegisters<T>(): Observable<T[]> {
     return this.http.get<T[]>(`${this.url}/registers`);
   }
-//
- // getRegistersByRoom<T>(room_id: number): Observable<T> {
- //   return this.http.get<T>(`${this.url}/registers/from-room/${room_id}`);
- // }
-//
- // getRegistersById<T>(id: number): Observable<T> {
- //   return this.http.get<T>(`${this.url}/registers/${id}`);
- // }
-//
-//  createRegister<T>(item: T): Observable<T> {
-//    return this.http.post<T>(`${this.url}/registers`, item);
-//  }
-
-  //deleteRegister(id: number): Observable<void> {
-  //  return this.http.delete<void>(`${this.url}/registers/${id}`);
-  //}
-
-  //  CRUD endpoints for rooms
 
   getAllRooms<T>(): Observable<T[]> {
     return this.http.get<T[]>(`${this.url}/rooms`);
@@ -61,11 +40,7 @@ import {Observable} from "rxjs";
     return this.http.get<T[]>(`${this.url}/sensors`);
   }
 
-  getSensor<T>(id: number): Observable<T> {
-    return this.http.get<T>(`${this.url}/sensors/${id}`);
-  }
-
-  createSensor<T>(item: Omit<T, 'id'>): Observable<T> {
+  createSensor<T>(item: Omit<T, 'id'>): Observable<T> { 
     return this.http.post<T>(`${this.url}/sensors`, item);
   }
 
@@ -73,18 +48,8 @@ import {Observable} from "rxjs";
     return this.http.patch<T>(`${this.url}/sensors/${id}`, item);
   }
 
-  deleteSensor(id: number): Observable<void> {
+  deleteSensor<T>(id: number): Observable<void> {
     return this.http.delete<void>(`${this.url}/sensors/${id}`);
   }
-
-  //  CRUD endpoints for sensors
-
-  
-
-/*
-  getAllRegisters<T>(): Observable<T[]> {
-    return this.http.get<T[]>(`${this.url}/registers`);
-  }
-*/
 
 }
