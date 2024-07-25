@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Register } from '../models/register.model';
-import { RegisterService } from '../../services/register.service';
-import { FormsModule, FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from '../../services/api.service';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzTableModule } from 'ng-zorro-antd/table';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLabelComponent } from 'ng-zorro-antd/form';
 import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 import { NzInputDirective } from 'ng-zorro-antd/input';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
-import { NzTableComponent, NzTableModule } from 'ng-zorro-antd/table';
 import { NzInputNumberComponent } from 'ng-zorro-antd/input-number';
 import { NzColDirective } from 'ng-zorro-antd/grid';
-
 
 @Component({
   standalone: true,
@@ -32,15 +32,15 @@ import { NzColDirective } from 'ng-zorro-antd/grid';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    NzTableModule
+    NzTableModule,
+    NzSpinModule
   ]
 })
 export class RegisterListComponent implements OnInit {
-  registers: Register[] = []; 
-
+  registers: Register[] = [];
   isLoading = false;
 
-  constructor(private registerService: RegisterService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.loadRegisters();
@@ -48,7 +48,7 @@ export class RegisterListComponent implements OnInit {
 
   loadRegisters(): void {
     this.isLoading = true;
-    this.registerService.getAllRegisters().subscribe(
+    this.apiService.getAllRegisters<Register>().subscribe(
       (data) => {
         this.registers = data;
         this.isLoading = false;

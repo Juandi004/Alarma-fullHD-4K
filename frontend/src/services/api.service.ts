@@ -40,17 +40,41 @@ import {Observable} from "rxjs";
   getAllRooms<T>(): Observable<T[]> {
     return this.http.get<T[]>(`${this.url}/rooms`);
   }
+
   getRoom<T>(id: number): Observable<T> {
     return this.http.get<T>(`${this.url}/rooms/${id}`);
   }
-  createRoom<T>(item: T): Observable<T> {
+
+  createRoom<T>(item: Omit<T, 'id'>): Observable<T> { 
     return this.http.post<T>(`${this.url}/rooms`, item);
   }
+
   patchRoom<T>(id: number, item: T): Observable<T> {
     return this.http.patch<T>(`${this.url}/rooms/${id}`, item);
   }
+
   deleteRoom<T>(id: number): Observable<void> {
     return this.http.delete<void>(`${this.url}/rooms/${id}`);
+  }
+
+  getAllSensors<T>(): Observable<T[]> {
+    return this.http.get<T[]>(`${this.url}/sensors`);
+  }
+
+  getSensor<T>(id: number): Observable<T> {
+    return this.http.get<T>(`${this.url}/sensors/${id}`);
+  }
+
+  createSensor<T>(item: Omit<T, 'id'>): Observable<T> {
+    return this.http.post<T>(`${this.url}/sensors`, item);
+  }
+
+  patchSensor<T>(id: number, item: T): Observable<T> {
+    return this.http.patch<T>(`${this.url}/sensors/${id}`, item);
+  }
+
+  deleteSensor(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/sensors/${id}`);
   }
 
   //  CRUD endpoints for sensors

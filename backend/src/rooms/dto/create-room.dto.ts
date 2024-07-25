@@ -1,4 +1,4 @@
-import { IsNumber, IsAlphanumeric } from "class-validator";
+import { IsNumber, IsAlphanumeric, isString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateRoomDto {

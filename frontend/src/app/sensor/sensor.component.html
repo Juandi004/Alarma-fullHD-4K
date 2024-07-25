@@ -1,0 +1,29 @@
+<div *ngIf="isLoading" class="loading-spinner">
+    <nz-spin nzSize="large"></nz-spin>
+  </div>
+  
+  <h2>Sensor List</h2>
+  
+  <nz-card *ngIf="!isLoading">
+    <nz-table [nzData]="sensors" [nzBordered]="true">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Model</th>
+          <th>Make</th>
+          <th>Type</th>
+          <th>Year of Production</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sensor of sensors">
+          <td>{{ sensor.id }}</td>
+          <td>{{ sensor.model }}</td>
+          <td>{{ sensor.make }}</td>
+          <td>{{ sensor.type }}</td>
+          <td>{{ sensor.year_of_production }}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-card>
+  

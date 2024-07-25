@@ -1,0 +1,52 @@
+<div *ngIf="isLoading" class="loading-spinner">
+    <nz-spin nzSize="large"></nz-spin>
+  </div>
+  
+  <h2>Create Room</h2>
+
+  <nz-card *ngIf="!isLoading">
+    <form [formGroup]="roomForm" (ngSubmit)="onSubmit()">
+      <nz-form-item>
+        <nz-form-label [nzRequired]="true">Name</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="name" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzRequired]="true">Size</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="size" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" type="submit">Submit</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+
+    <h2>Room List</h2>
+
+    <nz-table [nzData]="rooms" [nzBordered]="true">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Size</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let room of rooms">
+          <td>{{ room.id }}</td>
+          <td>{{ room.name }}</td>
+          <td>{{ room.size }}</td>
+          <td>
+            <button nz-button nzType="default" (click)="onEdit(room)">Edit</button>
+            <button nz-button nzType="default" (click)="onDelete(room.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-card>
+  
