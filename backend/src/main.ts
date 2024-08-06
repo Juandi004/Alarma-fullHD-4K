@@ -11,8 +11,8 @@ async function bootstrap() {
   });
 
   const config = new DocumentBuilder()
-    .setTitle('Arduino API')
-    .setDescription("The APIs to use both at frontend and backend, please DON'T USE the registers table to create directly as it is reserved to be used by Arduino, you can use the GET function though")
+    .setTitle('Soccer Team API')
+    .setDescription("The APIs of Soccer Teams")
     .setVersion('1.0')
     .build();
 

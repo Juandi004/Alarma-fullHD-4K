@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { RegistersModule } from './registers/registers.module';
 import { SensorsModule } from './sensors/sensors.module';
-import { RoomsModule } from './rooms/rooms.module';
+import { RoomsModule } from './team/rooms.module';
 
 @Module({
   imports: [PrismaModule, RegistersModule, SensorsModule, RoomsModule],
